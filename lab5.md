@@ -25,10 +25,54 @@
 
 2.ใช้คำสั่ง 05_run_wifi
 
-5.ใช้คำสั่ง vi src/main.cpp จะขึ้นโค้ดดังนี้
+3.ใช้คำสั่ง vi src/main.cpp จะขึ้นโค้ดดังนี้
+
+```
+#include <ESP8266WiFi.h>
+//#include <WiFiClient.h>
+#include <ESP8266WebServer.h>
+
+const char* ssid = "HI_BMFWIFI_2.4G";
+const char* password = "0819110933";
+
+ESP8266WebServer server(80);
+
+int cnt = 0;
+
+void setup(void){
+	Serial.begin(115200);
+
+	WiFi.mode(WIFI_STA);
+	WiFi.begin(ssid, password);
+	while (WiFi.status() != WL_CONNECTED) {
+		delay(500);
+		Serial.print(".");
+	}
+	Serial.print("\n\nIP address: ");
+	Serial.println(WiFi.localIP());
+
+	server.onNotFound([]() {
+		server.send(404, "text/plain", "Path Not Found");
+	});
+
+	server.on("/", []() {
+		cnt++;
+		String msg = "Hello cnt: ";
+		msg += cnt;
+		server.send(200, "text/plain", msg);
+	});
+
+	server.begin();
+	Serial.println("HTTP server started");
+}
+
+void loop(void){
+  server.handleClient();
+}
+```
 
 
-เนืองจากโปรแกรมเชื่อมต่อกับไวไฟดังนั้นต้องใส่ชื่อ wifi และ password ก่อน ตัวโปรแกรมแบ่งออกเป็น 2 ส่วนได้แก่
+เนื่องจากโปรแกรมเชื่อมต่อกับไวไฟดังนั้นต้องใส่ชื่อ wifi และ password ก่อน ตัวโปรแกรมแบ่งออกเป็น 2 ส่วนได้แก่
 
    1.Setup เป็นการ connect กับไวไฟที่เราใส่ชื่อไว้ตอนแรก และ Setup webserver โดยให้แสดงผลเป็น Hello cntโดย cnt จะบวก 1 ขึ้นเรื่อยๆ
 
@@ -41,6 +85,8 @@
 8.กดปุ่มลัพโหลดและกดปุ่มรีเซตที่ตัวไมโครคอนโทรเลอร์เพื่อให้ตัวโปรแกรมอัพโหลดเข้าไปในตัวไมโครคอนโทรเลอร์
 
 9.pio device monitor เพื่อดูผลลัพธ์ 
+
+![image](https://user-images.githubusercontent.com/80880126/112267472-1898e600-8ca8-11eb-8d6b-b75ba6875a0a.png)
 
 10.ต่อมาจะขึ้น ip address ให้ copy ip address ไปบราวเซอร์ในการทดสอบแล้วบันทึกผล
 
