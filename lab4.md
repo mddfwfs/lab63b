@@ -37,6 +37,33 @@
 
 6.พิมพ์คำสั่ง vi src/main.cpp เมื่อกด Enter จะขึ้นโค้ดดังนี้
 
+```
+#include <Arduino.h>
+#include <ESP8266WiFi.h>
+
+int cnt = 0;
+
+void setup()
+{
+	Serial.begin(115200);
+	pinMode(0, INPUT);
+	pinMode(2, OUTPUT);
+	Serial.println("\n\n\n");
+}
+
+void loop()
+{
+	int val = digitalRead(0);
+	Serial.printf("======= read %d\n", val);
+	if(val==1) {
+		digitalWrite(2, LOW);
+	} else {
+		digitalWrite(2, HIGH);
+	}
+	delay(100);
+}
+```
+
 โดยโค้ดของโปรแกรมนี้ได้เซตที่พอร์ท 0 คือ input พอร์ท 2 คือ output และ อ่านจะอ่านข้อมูลจากพอร์ท 0 โดยให้เป็นข้อมูลดิจิทัล(มีค่า 0 1) และแสดงผลว่าอ่านได้เท่าไหร่โดยถ้าเป็น 1 จะเป็นค่า low ที่พอร์ท 2 
 และถ้าเป็น 0 จะเป็นค่า high ที่พอร์ท 2 
 
@@ -45,6 +72,20 @@
 8.pio device monitor เพื่อดูผลลัพธ์
 
 9.ดูที่สายไฟเส้นที่ขาว (พอร์ท 0) โดยจิ้มที่เส้นสีดำ (0V)
+
+![image](https://user-images.githubusercontent.com/80880126/112266894-3f0a5180-8ca7-11eb-8f0c-86a9c796d6cc.png)
+
+-นำสายไฟสีขาว(port 0)ไปจิ้มที่เส้นสีแดงจะให้สัญญาณ input เป็น 1 ไฟดับ
+
+![image](https://user-images.githubusercontent.com/80880126/112266991-5cd7b680-8ca7-11eb-92e8-f5f005a01b3a.png)
+
+-กดปุ่มสีดำ(port 0 = 0) input เป็น 0 ไฟติด
+
+![image](https://user-images.githubusercontent.com/80880126/112267129-94def980-8ca7-11eb-9284-08c07ecefef6.png)
+
+-ปล่อยปุ่มสีดำ input เป็น 1 ไฟดับ
+
+![image](https://user-images.githubusercontent.com/80880126/112267206-afb16e00-8ca7-11eb-9507-1df3d6544766.png)
 
 10.นำตัวไมโครคอนโทรลเลอร์ที่เขียนโปรแกรมไว้แล้วมาต่อกับตัวรีเลย์
 
@@ -55,6 +96,14 @@
 13.นำinput(เส้นสีขาว)ต่อกับสัญญาณจากcensor
 
 14.ลองเอานิ้วไปเปิดหน้า censor กับ ไม่เอานิ้วปิดcensorและสังเกตหลอด LED
+
+![image](https://user-images.githubusercontent.com/80880126/112266374-71677f00-8ca6-11eb-8ca7-7e3e36b1f1f6.png)
+-  ถ้าเปิดซนเซอร์มีแสงสว่าง input เป็น 0 ไฟติด
+
+![image](https://user-images.githubusercontent.com/80880126/112266592-cefbcb80-8ca6-11eb-8bed-62aa21988a57.png)
+
+- ถ้าเปิดเซนเซอร์ไม่มีแสงสว่าง input เป็น 1 ไฟดับ
+
 
 ##### การบันทึกผลการทดลอง
 1.เขียนโปรแกรมไมโครคอนโทรลเลอร์ด้วยโปรแกรม 04_Input-Port
