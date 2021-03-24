@@ -38,8 +38,36 @@ run relay https://www.youtube.com/watch?v=6JnhaUILGuw
 
 5.ใช้คำสั่ง vi src/main.cpp จะขึ้นโค้ดดังนี้
 
+```
+#include <Arduino.h>
+#include <ESP8266WiFi.h>
 
-โค้ดของโปรแกรมนี้ไ้้เซตที่พอร์ท 0 คือ พอร์ทเอ้าพุต และมีคำสั่งวนลูปทุกๆ 500 ms โยจะนับ cnt ไปเรื่อยๆโดยที่เมือ cnt เลขคู่เป็น off และคี่เป็น on
+int cnt = 0;
+
+void setup()
+{
+	Serial.begin(115200);
+	pinMode(0, OUTPUT);
+	Serial.println("\n\n\n");
+}
+
+void loop()
+{
+	cnt++;
+	if(cnt % 2) {
+		Serial.println("========== ON ===========");
+		digitalWrite(0, HIGH);
+	} else {
+		Serial.println("========== OFF ===========");
+		digitalWrite(0, LOW);
+	}
+	delay(500);
+}
+
+```
+
+
+โค้ดของโปรแกรมนี้ได้เซตที่พอร์ท 0 คือ พอร์ทเอ้าพุต และมีคำสั่งวนลูปทุกๆ 500 ms โดยจะนับ cnt ไปเรื่อยๆโดยที่เมือ cnt เลขคู่เป็น off และคี่เป็น on
 ใช้คำสั่ง pio device monitor เพื่อเตรียมสแกนหา wifi
 
 6.อัพโหลดโปรแกรมเข้าไมโครคอนโทรเลอร์โดยการใช้คำสั่ง pio run-t upload
@@ -47,6 +75,9 @@ run relay https://www.youtube.com/watch?v=6JnhaUILGuw
 7.กดปุ่มอัพโหลดและรีเซตที่ตัวไมโทรคอนโทรเลอร์เพื่อให้ตัวโปรแกรมอัพโหลดเข้าไปในตัว microcontroller
 
 8.pio device monitor แล้วดูผลลัพท์
+
+![image](https://user-images.githubusercontent.com/80880126/112264361-5c3d2100-8ca3-11eb-8945-d37c9caffd7d.png)
+
 
 9.สังเกตหลอดไฟจะมีไฟเปิดและปิด
 
