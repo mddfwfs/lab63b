@@ -8,7 +8,7 @@
 ### อุปกรณ์ที่ใช้
 1.คอมพิวเตอร์
 
-2.microcontroller ESP01
+2.microcontroller ESP-01
 
 3.อุปกรณ์ต่อ USB-Serial
 
