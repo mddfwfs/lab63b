@@ -28,7 +28,7 @@
 
 ## ศึกษาข้อมูลเบื้องต้น
 
-- โครงงานหน้าต่างปิดอัตโนมัติเมื่อฝนตก : https://docs.google.com/document/d/0B9t7Jao3qc0sVkRDMGN4aFladlE
+- โครงงานหน้าต่างปิดอัตโนมัติเมื่อฝนตก : https://drive.google.com/file/d/0B9t7Jao3qc0sVkRDMGN4aFladlE/view?usp=sharing
 
 - run relay https://www.youtube.com/watch?v=6JnhaUILGuw
 
