@@ -32,7 +32,7 @@ run relay https://www.youtube.com/watch?v=6JnhaUILGuw
 
 2.นำ microcontroller เชื่อมต่อกับพอร์ท
 
-3.เปิด cmd ใช้คำสั่งซึ่งจากตัวอย่างอยู่ในโฟล์เดอร์ pattani ใช้คำสั่ง cd
+3.เปิด cmd ใช้คำสั่งซึ่งจากตัวอย่างอยู่ในโฟล์เดอร์ pattani ใช้คำสั่ง **cd pattani**
 
 4.ใช้คำสั่ง cd 03_Output-Port
 
